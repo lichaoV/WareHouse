@@ -12,15 +12,14 @@ namespace Warehouse.Web.ViewModel.Input.GoodsInputVMs
 {
     public partial class GoodsInputSearcher : BaseSearcher
     {
-        [Display(Name = "入库时间")]
-        public DateRange InputTime { get; set; }
-        [Display(Name = "商品名称")]
-        public String GoodsName { get; set; }
+        public List<ComboSelectListItem> AllGoodsInfos { get; set; }
+        public Guid? GoodsInfoId { get; set; }
         [Display(Name = "是否可用")]
         public Boolean? ActiveFlag { get; set; }
 
         protected override void InitVM()
         {
+            AllGoodsInfos = DC.Set<GoodsInfo>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.GoodsName);
         }
 
     }

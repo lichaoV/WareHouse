@@ -33,52 +33,30 @@ namespace Warehouse.Web.ViewModel.Input.GoodsInputVMs
             return new List<GridColumn<GoodsInput_View>>{
                 this.MakeGridHeader(x => x.InputTime),
                 this.MakeGridHeader(x => x.SupplierName_view),
-                this.MakeGridHeader(x => x.GoodsName),
-                this.MakeGridHeader(x => x.GoodsDesc),
+                this.MakeGridHeader(x => x.GoodsName_view),
                 this.MakeGridHeader(x => x.Producer),
-                this.MakeGridHeader(x => x.Specification),
                 this.MakeGridHeader(x => x.BatchNumber),
                 this.MakeGridHeader(x => x.ApprovalNo),
-                this.MakeGridHeader(x => x.SellingPrice),
-                this.MakeGridHeader(x => x.InputNumber),
-                this.MakeGridHeader(x => x.WarningValue),
                 this.MakeGridHeader(x => x.ActiveFlag),
-                this.MakeGridHeader(x => x.PhotoId).SetFormat(PhotoIdFormat),
                 this.MakeGridHeaderAction(width: 200)
             };
         }
-        private List<ColumnFormatInfo> PhotoIdFormat(GoodsInput_View entity, object val)
-        {
-            return new List<ColumnFormatInfo>
-            {
-                ColumnFormatInfo.MakeDownloadButton(ButtonTypesEnum.Button,entity.PhotoId),
-                ColumnFormatInfo.MakeViewButton(ButtonTypesEnum.Button,entity.PhotoId,640,480),
-            };
-        }
-
 
         public override IOrderedQueryable<GoodsInput_View> GetSearchQuery()
         {
             var query = DC.Set<GoodsInput>()
-                .CheckBetween(Searcher.InputTime?.GetStartTime(), Searcher.InputTime?.GetEndTime(), x => x.InputTime, includeMax: false)
-                .CheckContain(Searcher.GoodsName, x=>x.GoodsName)
+                .CheckEqual(Searcher.GoodsInfoId, x=>x.GoodsInfoId)
                 .CheckEqual(Searcher.ActiveFlag, x=>x.ActiveFlag)
                 .Select(x => new GoodsInput_View
                 {
 				    ID = x.ID,
                     InputTime = x.InputTime,
                     SupplierName_view = x.Supplier.SupplierName,
-                    GoodsName = x.GoodsName,
-                    GoodsDesc = x.GoodsDesc,
+                    GoodsName_view = x.GoodsInfo.GoodsName,
                     Producer = x.Producer,
-                    Specification = x.Specification,
                     BatchNumber = x.BatchNumber,
                     ApprovalNo = x.ApprovalNo,
-                    SellingPrice = x.SellingPrice,
-                    InputNumber = x.InputNumber,
-                    WarningValue = x.WarningValue,
                     ActiveFlag = x.ActiveFlag,
-                    PhotoId = x.PhotoId,
                 })
                 .OrderBy(x => x.ID);
             return query;
@@ -89,6 +67,8 @@ namespace Warehouse.Web.ViewModel.Input.GoodsInputVMs
     public class GoodsInput_View : GoodsInput{
         [Display(Name = "供应商名称")]
         public String SupplierName_view { get; set; }
+        [Display(Name = "商品名称")]
+        public String GoodsName_view { get; set; }
 
     }
 }

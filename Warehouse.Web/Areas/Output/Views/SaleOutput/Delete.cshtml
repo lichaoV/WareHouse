@@ -1,14 +1,16 @@
-﻿@model Warehouse.Web.ViewModel.Input.GoodsInputVMs.GoodsInputVM
+﻿@model Warehouse.Web.ViewModel.Output.SaleOutputVMs.SaleOutputVM
 
 <wt:form vm="@Model">
 	<wt:quote>确定要删除这条数据么：</wt:quote>
 <wt:row items-per-row="ItemsPerRowEnum.Two">
-<wt:display field="Entity.Supplier.SupplierName" />
+<wt:display field="Entity.Salesman.SalesmanName" />
+<wt:display field="Entity.SaleTime" />
+<wt:display field="Entity.Customer.CustomerName" />
 <wt:display field="Entity.GoodsInfo.GoodsName" />
-<wt:display field="Entity.Producer" />
-<wt:display field="Entity.BatchNumber" />
-<wt:display field="Entity.ApprovalNo" />
-<wt:display field="Entity.ActiveFlag" />
+<wt:display field="Entity.SaleNumber" />
+<wt:display field="Entity.SalePrice" />
+<wt:display field="Entity.PayType" />
+<wt:display field="Entity.SaleRemark" />
 </wt:row>
     <wt:hidden field="Entity.ID" />
     <wt:row align=" AlignEnum.Right">

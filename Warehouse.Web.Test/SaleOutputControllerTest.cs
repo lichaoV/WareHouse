@@ -6,22 +6,22 @@ using System.Linq;
 using System.Text;
 using WalkingTec.Mvvm.Core;
 using Warehouse.Web.Controllers;
-using Warehouse.Web.ViewModel.Input.GoodsInputVMs;
+using Warehouse.Web.ViewModel.Output.SaleOutputVMs;
 using Warehouse.Web.Model;
 using Warehouse.Web.DataAccess;
 
 namespace Warehouse.Web.Test
 {
     [TestClass]
-    public class GoodsInputControllerTest
+    public class SaleOutputControllerTest
     {
-        private GoodsInputController _controller;
+        private SaleOutputController _controller;
         private string _seed;
 
-        public GoodsInputControllerTest()
+        public SaleOutputControllerTest()
         {
             _seed = Guid.NewGuid().ToString();
-            _controller = MockController.CreateController<GoodsInputController>(_seed, "user");
+            _controller = MockController.CreateController<SaleOutputController>(_seed, "user");
         }
 
         [TestMethod]
@@ -29,7 +29,7 @@ namespace Warehouse.Web.Test
         {
             PartialViewResult rv = (PartialViewResult)_controller.Index();
             Assert.IsInstanceOfType(rv.Model, typeof(IBasePagedListVM<TopBasePoco, BaseSearcher>));
-            string rv2 = _controller.Search(rv.Model as GoodsInputListVM);
+            string rv2 = _controller.Search(rv.Model as SaleOutputListVM);
             Assert.IsTrue(rv2.Contains("\"Code\":200"));
         }
 
@@ -37,26 +37,25 @@ namespace Warehouse.Web.Test
         public void CreateTest()
         {
             PartialViewResult rv = (PartialViewResult)_controller.Create();
-            Assert.IsInstanceOfType(rv.Model, typeof(GoodsInputVM));
+            Assert.IsInstanceOfType(rv.Model, typeof(SaleOutputVM));
 
-            GoodsInputVM vm = rv.Model as GoodsInputVM;
-            GoodsInput v = new GoodsInput();
+            SaleOutputVM vm = rv.Model as SaleOutputVM;
+            SaleOutput v = new SaleOutput();
 			
-            v.SupplierId = AddSupplier();
+            v.SalesmanId = AddSalesman();
+            v.CustomerId = AddCustomer();
             v.GoodsInfoId = AddGoodsInfo();
-            v.Producer = "phXjSozU";
-            v.BatchNumber = "OLOV";
-            v.ApprovalNo = "VM2iKjjdS";
+            v.SaleNumber = 16;
+            v.SalePrice = 67;
             vm.Entity = v;
             _controller.Create(vm);
 
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
-                var data = context.Set<GoodsInput>().FirstOrDefault();
+                var data = context.Set<SaleOutput>().FirstOrDefault();
 				
-                Assert.AreEqual(data.Producer, "phXjSozU");
-                Assert.AreEqual(data.BatchNumber, "OLOV");
-                Assert.AreEqual(data.ApprovalNo, "VM2iKjjdS");
+                Assert.AreEqual(data.SaleNumber, 16);
+                Assert.AreEqual(data.SalePrice, 67);
                 Assert.AreEqual(data.CreateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.CreateTime.Value).Seconds < 10);
             }
@@ -66,46 +65,44 @@ namespace Warehouse.Web.Test
         [TestMethod]
         public void EditTest()
         {
-            GoodsInput v = new GoodsInput();
+            SaleOutput v = new SaleOutput();
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
        			
-                v.SupplierId = AddSupplier();
+                v.SalesmanId = AddSalesman();
+                v.CustomerId = AddCustomer();
                 v.GoodsInfoId = AddGoodsInfo();
-                v.Producer = "phXjSozU";
-                v.BatchNumber = "OLOV";
-                v.ApprovalNo = "VM2iKjjdS";
-                context.Set<GoodsInput>().Add(v);
+                v.SaleNumber = 16;
+                v.SalePrice = 67;
+                context.Set<SaleOutput>().Add(v);
                 context.SaveChanges();
             }
 
             PartialViewResult rv = (PartialViewResult)_controller.Edit(v.ID.ToString());
-            Assert.IsInstanceOfType(rv.Model, typeof(GoodsInputVM));
+            Assert.IsInstanceOfType(rv.Model, typeof(SaleOutputVM));
 
-            GoodsInputVM vm = rv.Model as GoodsInputVM;
-            v = new GoodsInput();
+            SaleOutputVM vm = rv.Model as SaleOutputVM;
+            v = new SaleOutput();
             v.ID = vm.Entity.ID;
        		
-            v.Producer = "KUe7";
-            v.BatchNumber = "tg0NvBp";
-            v.ApprovalNo = "1LnTIz";
+            v.SaleNumber = 24;
+            v.SalePrice = 72;
             vm.Entity = v;
             vm.FC = new Dictionary<string, object>();
 			
-            vm.FC.Add("Entity.SupplierId", "");
+            vm.FC.Add("Entity.SalesmanId", "");
+            vm.FC.Add("Entity.CustomerId", "");
             vm.FC.Add("Entity.GoodsInfoId", "");
-            vm.FC.Add("Entity.Producer", "");
-            vm.FC.Add("Entity.BatchNumber", "");
-            vm.FC.Add("Entity.ApprovalNo", "");
+            vm.FC.Add("Entity.SaleNumber", "");
+            vm.FC.Add("Entity.SalePrice", "");
             _controller.Edit(vm);
 
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
-                var data = context.Set<GoodsInput>().FirstOrDefault();
+                var data = context.Set<SaleOutput>().FirstOrDefault();
  				
-                Assert.AreEqual(data.Producer, "KUe7");
-                Assert.AreEqual(data.BatchNumber, "tg0NvBp");
-                Assert.AreEqual(data.ApprovalNo, "1LnTIz");
+                Assert.AreEqual(data.SaleNumber, 24);
+                Assert.AreEqual(data.SalePrice, 72);
                 Assert.AreEqual(data.UpdateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.UpdateTime.Value).Seconds < 10);
             }
@@ -116,31 +113,31 @@ namespace Warehouse.Web.Test
         [TestMethod]
         public void DeleteTest()
         {
-            GoodsInput v = new GoodsInput();
+            SaleOutput v = new SaleOutput();
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
         		
-                v.SupplierId = AddSupplier();
+                v.SalesmanId = AddSalesman();
+                v.CustomerId = AddCustomer();
                 v.GoodsInfoId = AddGoodsInfo();
-                v.Producer = "phXjSozU";
-                v.BatchNumber = "OLOV";
-                v.ApprovalNo = "VM2iKjjdS";
-                context.Set<GoodsInput>().Add(v);
+                v.SaleNumber = 16;
+                v.SalePrice = 67;
+                context.Set<SaleOutput>().Add(v);
                 context.SaveChanges();
             }
 
             PartialViewResult rv = (PartialViewResult)_controller.Delete(v.ID.ToString());
-            Assert.IsInstanceOfType(rv.Model, typeof(GoodsInputVM));
+            Assert.IsInstanceOfType(rv.Model, typeof(SaleOutputVM));
 
-            GoodsInputVM vm = rv.Model as GoodsInputVM;
-            v = new GoodsInput();
+            SaleOutputVM vm = rv.Model as SaleOutputVM;
+            v = new SaleOutput();
             v.ID = vm.Entity.ID;
             vm.Entity = v;
             _controller.Delete(v.ID.ToString(),null);
 
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
-                Assert.AreEqual(context.Set<GoodsInput>().Count(), 1);
+                Assert.AreEqual(context.Set<SaleOutput>().Count(), 1);
             }
 
         }
@@ -149,16 +146,16 @@ namespace Warehouse.Web.Test
         [TestMethod]
         public void DetailsTest()
         {
-            GoodsInput v = new GoodsInput();
+            SaleOutput v = new SaleOutput();
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 				
-                v.SupplierId = AddSupplier();
+                v.SalesmanId = AddSalesman();
+                v.CustomerId = AddCustomer();
                 v.GoodsInfoId = AddGoodsInfo();
-                v.Producer = "phXjSozU";
-                v.BatchNumber = "OLOV";
-                v.ApprovalNo = "VM2iKjjdS";
-                context.Set<GoodsInput>().Add(v);
+                v.SaleNumber = 16;
+                v.SalePrice = 67;
+                context.Set<SaleOutput>().Add(v);
                 context.SaveChanges();
             }
             PartialViewResult rv = (PartialViewResult)_controller.Details(v.ID.ToString());
@@ -169,36 +166,36 @@ namespace Warehouse.Web.Test
         [TestMethod]
         public void BatchDeleteTest()
         {
-            GoodsInput v1 = new GoodsInput();
-            GoodsInput v2 = new GoodsInput();
+            SaleOutput v1 = new SaleOutput();
+            SaleOutput v2 = new SaleOutput();
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 				
-                v1.SupplierId = AddSupplier();
+                v1.SalesmanId = AddSalesman();
+                v1.CustomerId = AddCustomer();
                 v1.GoodsInfoId = AddGoodsInfo();
-                v1.Producer = "phXjSozU";
-                v1.BatchNumber = "OLOV";
-                v1.ApprovalNo = "VM2iKjjdS";
-                v2.SupplierId = v1.SupplierId; 
+                v1.SaleNumber = 16;
+                v1.SalePrice = 67;
+                v2.SalesmanId = v1.SalesmanId; 
+                v2.CustomerId = v1.CustomerId; 
                 v2.GoodsInfoId = v1.GoodsInfoId; 
-                v2.Producer = "KUe7";
-                v2.BatchNumber = "tg0NvBp";
-                v2.ApprovalNo = "1LnTIz";
-                context.Set<GoodsInput>().Add(v1);
-                context.Set<GoodsInput>().Add(v2);
+                v2.SaleNumber = 24;
+                v2.SalePrice = 72;
+                context.Set<SaleOutput>().Add(v1);
+                context.Set<SaleOutput>().Add(v2);
                 context.SaveChanges();
             }
 
             PartialViewResult rv = (PartialViewResult)_controller.BatchDelete(new string[] { v1.ID.ToString(), v2.ID.ToString() });
-            Assert.IsInstanceOfType(rv.Model, typeof(GoodsInputBatchVM));
+            Assert.IsInstanceOfType(rv.Model, typeof(SaleOutputBatchVM));
 
-            GoodsInputBatchVM vm = rv.Model as GoodsInputBatchVM;
+            SaleOutputBatchVM vm = rv.Model as SaleOutputBatchVM;
             vm.Ids = new string[] { v1.ID.ToString(), v2.ID.ToString() };
             _controller.DoBatchDelete(vm, null);
 
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
-                Assert.AreEqual(context.Set<GoodsInput>().Count(), 2);
+                Assert.AreEqual(context.Set<SaleOutput>().Count(), 2);
             }
         }
 
@@ -207,20 +204,35 @@ namespace Warehouse.Web.Test
         {
             PartialViewResult rv = (PartialViewResult)_controller.Index();
             Assert.IsInstanceOfType(rv.Model, typeof(IBasePagedListVM<TopBasePoco, BaseSearcher>));
-            IActionResult rv2 = _controller.ExportExcel(rv.Model as GoodsInputListVM);
+            IActionResult rv2 = _controller.ExportExcel(rv.Model as SaleOutputListVM);
             Assert.IsTrue((rv2 as FileContentResult).FileContents.Length > 0);
         }
 
-        private Guid AddSupplier()
+        private Guid AddSalesman()
         {
-            Supplier v = new Supplier();
+            Salesman v = new Salesman();
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 
-                v.SupplierName = "R3VibNvKi";
-                v.Contract = "0XHgMb8s";
-                v.ContractPhone = "YECSFGi";
-                context.Set<Supplier>().Add(v);
+                v.SalesmanName = "lGI3GqjDh";
+                v.SalesmanCode = "913IWGQ5";
+                v.SalesmanPhone = "9oxUT";
+                context.Set<Salesman>().Add(v);
+                context.SaveChanges();
+            }
+            return v.ID;
+        }
+
+        private Guid AddCustomer()
+        {
+            Customer v = new Customer();
+            using (var context = new DataContext(_seed, DBTypeEnum.Memory))
+            {
+
+                v.CustomerName = "WIdq";
+                v.Contract = "AfmLykqHO";
+                v.ContractPhone = "iAJaB";
+                context.Set<Customer>().Add(v);
                 context.SaveChanges();
             }
             return v.ID;
@@ -232,11 +244,11 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 
-                v.GoodsName = "O1ad";
-                v.Specification = "OCEZ";
-                v.SellingPrice = 32;
-                v.InputNumber = 41;
-                v.WarningValue = 87;
+                v.GoodsName = "cgBwtAXGJ";
+                v.Specification = "NA14k";
+                v.SellingPrice = 37;
+                v.InputNumber = 6;
+                v.WarningValue = 10;
                 context.Set<GoodsInfo>().Add(v);
                 context.SaveChanges();
             }

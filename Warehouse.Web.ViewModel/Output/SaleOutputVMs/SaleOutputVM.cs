@@ -8,22 +8,25 @@ using WalkingTec.Mvvm.Core.Extensions;
 using Warehouse.Web.Model;
 
 
-namespace Warehouse.Web.ViewModel.Input.GoodsInputVMs
+namespace Warehouse.Web.ViewModel.Output.SaleOutputVMs
 {
-    public partial class GoodsInputVM : BaseCRUDVM<GoodsInput>
+    public partial class SaleOutputVM : BaseCRUDVM<SaleOutput>
     {
-        public List<ComboSelectListItem> AllSuppliers { get; set; }
+        public List<ComboSelectListItem> AllSalesmans { get; set; }
+        public List<ComboSelectListItem> AllCustomers { get; set; }
         public List<ComboSelectListItem> AllGoodsInfos { get; set; }
 
-        public GoodsInputVM()
+        public SaleOutputVM()
         {
-            SetInclude(x => x.Supplier);
+            SetInclude(x => x.Salesman);
+            SetInclude(x => x.Customer);
             SetInclude(x => x.GoodsInfo);
         }
 
         protected override void InitVM()
         {
-            AllSuppliers = DC.Set<Supplier>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.SupplierName);
+            AllSalesmans = DC.Set<Salesman>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.SalesmanName);
+            AllCustomers = DC.Set<Customer>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.CustomerName);
             AllGoodsInfos = DC.Set<GoodsInfo>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.GoodsName + "   " + y.Specification);
         }
 

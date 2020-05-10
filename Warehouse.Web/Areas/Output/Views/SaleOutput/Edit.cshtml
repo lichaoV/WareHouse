@@ -1,0 +1,19 @@
+﻿@model Warehouse.Web.ViewModel.Output.SaleOutputVMs.SaleOutputVM
+
+<wt:form vm="@Model">
+<wt:row items-per-row="ItemsPerRowEnum.Two">
+<wt:combobox field="Entity.SalesmanId" items="AllSalesmans"/>
+<wt:datetime field="Entity.SaleTime" />
+<wt:combobox field="Entity.CustomerId" items="AllCustomers"/>
+<wt:combobox field="Entity.GoodsInfoId" items="AllGoodsInfos"/>
+<wt:textbox field="Entity.SaleNumber" />
+<wt:textbox field="Entity.SalePrice" />
+<wt:combobox field="Entity.PayType" />
+<wt:textbox field="Entity.SaleRemark" />
+</wt:row>
+    <wt:hidden field="Entity.ID" />
+    <wt:row align="AlignEnum.Right">
+        <wt:submitbutton />
+        <wt:closebutton />
+    </wt:row>
+</wt:form>

@@ -2,19 +2,12 @@
 
 <wt:form vm="@Model">
 <wt:row items-per-row="ItemsPerRowEnum.Two">
-<wt:datetime field="Entity.InputTime" />
 <wt:combobox field="Entity.SupplierId" items="AllSuppliers"/>
-<wt:textbox field="Entity.GoodsName" />
-<wt:textbox field="Entity.GoodsDesc" />
+<wt:combobox field="Entity.GoodsInfoId" items="AllGoodsInfos"/>
 <wt:textbox field="Entity.Producer" />
-<wt:textbox field="Entity.Specification" />
 <wt:textbox field="Entity.BatchNumber" />
 <wt:textbox field="Entity.ApprovalNo" />
-<wt:textbox field="Entity.SellingPrice" />
-<wt:textbox field="Entity.InputNumber" />
-<wt:textbox field="Entity.WarningValue" />
 <wt:combobox field="Entity.ActiveFlag" />
-<wt:upload field="Entity.PhotoId" />
 </wt:row>
     <wt:hidden field="Entity.ID" />
     <wt:row align="AlignEnum.Right">

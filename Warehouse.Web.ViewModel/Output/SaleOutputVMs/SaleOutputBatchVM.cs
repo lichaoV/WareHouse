@@ -8,14 +8,14 @@ using WalkingTec.Mvvm.Core.Extensions;
 using Warehouse.Web.Model;
 
 
-namespace Warehouse.Web.ViewModel.Input.GoodsInputVMs
+namespace Warehouse.Web.ViewModel.Output.SaleOutputVMs
 {
-    public partial class GoodsInputBatchVM : BaseBatchVM<GoodsInput, GoodsInput_BatchEdit>
+    public partial class SaleOutputBatchVM : BaseBatchVM<SaleOutput, SaleOutput_BatchEdit>
     {
-        public GoodsInputBatchVM()
+        public SaleOutputBatchVM()
         {
-            ListVM = new GoodsInputListVM();
-            LinkedVM = new GoodsInput_BatchEdit();
+            ListVM = new SaleOutputListVM();
+            LinkedVM = new SaleOutput_BatchEdit();
         }
 
     }
@@ -23,7 +23,7 @@ namespace Warehouse.Web.ViewModel.Input.GoodsInputVMs
 	/// <summary>
     /// 批量编辑字段类
     /// </summary>
-    public class GoodsInput_BatchEdit : BaseVM
+    public class SaleOutput_BatchEdit : BaseVM
     {
 
         protected override void InitVM()

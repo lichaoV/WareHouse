@@ -1,0 +1,19 @@
+﻿@model Warehouse.Web.ViewModel.Basic.GoodsInfoVMs.GoodsInfoVM
+
+<wt:form vm="@Model">
+<wt:row items-per-row="ItemsPerRowEnum.Two">
+<wt:textbox field="Entity.GoodsName" />
+<wt:textbox field="Entity.GoodsDesc" />
+<wt:textbox field="Entity.Specification" />
+<wt:textbox field="Entity.SellingPrice" />
+<wt:textbox field="Entity.InputNumber" />
+<wt:textbox field="Entity.WarningValue" />
+<wt:combobox field="Entity.ActiveFlag" />
+<wt:upload field="Entity.PhotoId" />
+</wt:row>
+    <wt:hidden field="Entity.ID" />
+    <wt:row align="AlignEnum.Right">
+        <wt:submitbutton />
+        <wt:closebutton />
+    </wt:row>
+</wt:form>
