@@ -7,7 +7,9 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\WalkingTec.Mvvm.Core\WalkingTec.Mvvm.Core.csproj" />
+    <ProjectReference Include="..\WalkingTec.Mvvm.Mvc\WalkingTec.Mvvm.Mvc.csproj" />
     <ProjectReference Include="..\Warehouse.Web.Model\Warehouse.Web.Model.csproj" />
-  </ItemGroup >
+  </ItemGroup>
 </Project>
 

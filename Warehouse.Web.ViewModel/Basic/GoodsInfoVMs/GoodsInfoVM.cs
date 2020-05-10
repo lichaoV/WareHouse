@@ -21,11 +21,11 @@ namespace Warehouse.Web.ViewModel.Basic.GoodsInfoVMs
 
         protected override void InitVM()
         {
-            AllStoreHouses = DC.Set<StoreHouse>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.ContractName);
+            AllStoreHouses = DC.Set<StoreHouse>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.WarehouseCode);
         }
 
         public override void DoAdd()
-        {           
+        {
             base.DoAdd();
         }
 

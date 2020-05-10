@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Data;
+using Microsoft.EntityFrameworkCore;
 using WalkingTec.Mvvm.Core;
 using WalkingTec.Mvvm.Mvc;
 using WalkingTec.Mvvm.Core.Extensions;
+using Warehouse.Web.ViewModel.Basic.GoodsInfoVMs;
 using Warehouse.Web.ViewModel.Input.GoodsInputVMs;
 
 namespace Warehouse.Web.Controllers
@@ -41,12 +44,34 @@ namespace Warehouse.Web.Controllers
         [ActionDescription("新建")]
         public ActionResult Create(GoodsInputVM vm)
         {
+            vm.Entity.InputTime = DateTime.Now;
+
+            string sql = "SELECT * FROM GoodsInfos WHERE ID='{0}'";
+            sql = string.Format(sql, vm.Entity.GoodsInfoId);
+            DataTable dt = DC.RunSQL(sql);
+            decimal oldNumber = new decimal();
+            if (dt.Rows.Count > 0)
+            {
+                oldNumber = Convert.ToDecimal(dt.Rows[0]["InputNumber"].ToString());
+            }
+
+            decimal newNumber = oldNumber + vm.Entity.InputNumber;
+
             if (!ModelState.IsValid)
             {
                 return PartialView(vm);
             }
             else
             {
+                sql = "UPDATE GoodsInfos SET InputNumber='{0}' WHERE ID='{1}'";
+                sql = string.Format(sql, newNumber, vm.Entity.GoodsInfoId);
+                var cmd = DC.Database.GetDbConnection().CreateCommand();
+                cmd.CommandText = sql;
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection.Open();
+                cmd.ExecuteReader();
+                cmd.Connection.Close();
+
                 vm.DoAdd();
                 if (!ModelState.IsValid)
                 {
@@ -74,12 +99,50 @@ namespace Warehouse.Web.Controllers
         [ValidateFormItemOnly]
         public ActionResult Edit(GoodsInputVM vm)
         {
+            string sql = "SELECT * FROM GoodsInfos WHERE ID='{0}'";
+            sql = string.Format(sql, vm.Entity.GoodsInfoId);
+            DataTable dt = DC.RunSQL(sql);
+            decimal oldNumber = new decimal();
+            if (dt.Rows.Count > 0)
+            {
+                oldNumber = Convert.ToDecimal(dt.Rows[0]["InputNumber"].ToString());
+            }
+
+            sql = "SELECT * FROM GoodsInputs WHERE ID='{0}'";
+            sql = string.Format(sql, vm.Entity.ID);
+            DataTable dt1 = DC.RunSQL(sql);
+            decimal oldInputNumber = new decimal();
+            decimal newInputNumber = vm.Entity.InputNumber;
+            if (dt1.Rows.Count > 0)
+            {
+                oldInputNumber = Convert.ToDecimal(dt1.Rows[0]["InputNumber"].ToString());
+            }
+
+            decimal newNumber = decimal.MinValue;
+            if (newInputNumber > oldInputNumber)
+            {
+                newNumber = oldNumber + (newInputNumber - oldInputNumber);
+            }
+            else if (newInputNumber < oldInputNumber)
+            {
+                newNumber = oldNumber - (oldInputNumber - newInputNumber);
+            }
+
             if (!ModelState.IsValid)
             {
                 return PartialView(vm);
             }
             else
             {
+                sql = "UPDATE GoodsInfos SET InputNumber='{0}' WHERE ID='{1}'";
+                sql = string.Format(sql, newNumber, vm.Entity.GoodsInfoId);
+                var cmd = DC.Database.GetDbConnection().CreateCommand();
+                cmd.CommandText = sql;
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection.Open();
+                cmd.ExecuteReader();
+                cmd.Connection.Close();
+
                 vm.DoEdit();
                 if (!ModelState.IsValid)
                 {
@@ -107,7 +170,29 @@ namespace Warehouse.Web.Controllers
         public ActionResult Delete(string id, IFormCollection nouse)
         {
             var vm = CreateVM<GoodsInputVM>(id);
-            vm.DoDelete();
+
+            string sql = "SELECT * FROM GoodsInfos WHERE ID='{0}'";
+            sql = string.Format(sql, vm.Entity.GoodsInfoId);
+            DataTable dt = DC.RunSQL(sql);
+            decimal oldNumber = new decimal();
+            if (dt.Rows.Count > 0)
+            {
+                oldNumber = Convert.ToDecimal(dt.Rows[0]["InputNumber"].ToString());
+            }
+
+            decimal newNumber = oldNumber - vm.Entity.InputNumber;
+
+            vm.DoRealDelete();
+
+            sql = "UPDATE GoodsInfos SET InputNumber='{0}' WHERE ID='{1}'";
+            sql = string.Format(sql, newNumber, vm.Entity.GoodsInfoId);
+            var cmd = DC.Database.GetDbConnection().CreateCommand();
+            cmd.CommandText = sql;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection.Open();
+            cmd.ExecuteReader();
+            cmd.Connection.Close();
+
             if (!ModelState.IsValid)
             {
                 return PartialView(vm);
@@ -143,11 +228,11 @@ namespace Warehouse.Web.Controllers
         {
             if (!ModelState.IsValid || !vm.DoBatchEdit())
             {
-                return PartialView("BatchEdit",vm);
+                return PartialView("BatchEdit", vm);
             }
             else
             {
-                return FFResult().CloseDialog().RefreshGrid().Alert("操作成功，共有"+vm.Ids.Length+"条数据被修改");
+                return FFResult().CloseDialog().RefreshGrid().Alert("操作成功，共有" + vm.Ids.Length + "条数据被修改");
             }
         }
         #endregion
@@ -167,17 +252,17 @@ namespace Warehouse.Web.Controllers
         {
             if (!ModelState.IsValid || !vm.DoBatchDelete())
             {
-                return PartialView("BatchDelete",vm);
+                return PartialView("BatchDelete", vm);
             }
             else
             {
-                return FFResult().CloseDialog().RefreshGrid().Alert("操作成功，共有"+vm.Ids.Length+"条数据被删除");
+                return FFResult().CloseDialog().RefreshGrid().Alert("操作成功，共有" + vm.Ids.Length + "条数据被删除");
             }
         }
         #endregion
 
         #region 导入
-		[ActionDescription("导入")]
+        [ActionDescription("导入")]
         public ActionResult Import()
         {
             var vm = CreateVM<GoodsInputImportVM>();
