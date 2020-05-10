@@ -1,0 +1,19 @@
+﻿@model Warehouse.Web.ViewModel.Basic.CustomerVMs.CustomerVM
+
+<wt:form vm="@Model">
+<wt:row items-per-row="ItemsPerRowEnum.Two">
+<wt:textbox field="Entity.CustomerName" />
+<wt:textbox field="Entity.CustomerAddress" />
+<wt:textbox field="Entity.CustomerPhone" />
+<wt:textbox field="Entity.ZipCode" />
+<wt:textbox field="Entity.Contract" />
+<wt:textbox field="Entity.ContractPhone" />
+<wt:textbox field="Entity.DepositBank" />
+<wt:textbox field="Entity.BankAccount" />
+<wt:combobox field="Entity.ActiveFlag" />
+</wt:row>
+    <wt:row align="AlignEnum.Right">
+        <wt:submitbutton />
+        <wt:closebutton />
+    </wt:row>
+</wt:form>

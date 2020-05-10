@@ -1,0 +1,20 @@
+﻿@model Warehouse.Web.ViewModel.Basic.SupplierVMs.SupplierVM
+
+<wt:form vm="@Model">
+<wt:row items-per-row="ItemsPerRowEnum.Two">
+<wt:textbox field="Entity.SupplierName" />
+<wt:textbox field="Entity.SupplierAddress" />
+<wt:textbox field="Entity.SupplierPhone" />
+<wt:textbox field="Entity.ZipCode" />
+<wt:textbox field="Entity.Contract" />
+<wt:textbox field="Entity.ContractPhone" />
+<wt:textbox field="Entity.DepositBank" />
+<wt:textbox field="Entity.BankAccount" />
+<wt:combobox field="Entity.ActiveFlag" />
+</wt:row>
+    <wt:hidden field="Entity.ID" />
+    <wt:row align="AlignEnum.Right">
+        <wt:submitbutton />
+        <wt:closebutton />
+    </wt:row>
+</wt:form>

@@ -4,17 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using WalkingTec.Mvvm.Core;
+using Warehouse.Web.Model;
 
 namespace Warehouse.Web.DataAccess
 {
     public class DataContext : FrameworkContext
     {
+        public DbSet<GoodsInput> GoodsInputs { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Salesman> Salesmans { get; set; }
         public DataContext(CS cs)
              : base(cs)
         {
         }
 
-        public DataContext(string cs, DBTypeEnum dbtype, string version=null)
+        public DataContext(string cs, DBTypeEnum dbtype, string version = null)
              : base(cs, dbtype, version)
         {
         }

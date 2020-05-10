@@ -1,0 +1,21 @@
+﻿@model Warehouse.Web.ViewModel.Basic.SupplierVMs.SupplierVM
+
+<wt:form vm="@Model">
+	<wt:quote>确定要删除这条数据么：</wt:quote>
+<wt:row items-per-row="ItemsPerRowEnum.Two">
+<wt:display field="Entity.SupplierName" />
+<wt:display field="Entity.SupplierAddress" />
+<wt:display field="Entity.SupplierPhone" />
+<wt:display field="Entity.ZipCode" />
+<wt:display field="Entity.Contract" />
+<wt:display field="Entity.ContractPhone" />
+<wt:display field="Entity.DepositBank" />
+<wt:display field="Entity.BankAccount" />
+<wt:display field="Entity.ActiveFlag" />
+</wt:row>
+    <wt:hidden field="Entity.ID" />
+    <wt:row align=" AlignEnum.Right">
+        <wt:submitbutton theme=" ButtonThemeEnum.Warm" text="删除"/>
+        <wt:closebutton />
+    </wt:row>
+</wt:form>

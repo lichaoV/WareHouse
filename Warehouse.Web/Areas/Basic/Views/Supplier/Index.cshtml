@@ -1,0 +1,12 @@
+﻿@model Warehouse.Web.ViewModel.Basic.SupplierVMs.SupplierListVM
+
+<wt:searchpanel vm="@Model" reset-btn="true">
+<wt:row items-per-row="ItemsPerRowEnum.Three">
+<wt:textbox field="Searcher.SupplierName" />
+<wt:textbox field="Searcher.SupplierPhone" />
+<wt:textbox field="Searcher.Contract" />
+<wt:textbox field="Searcher.ContractPhone" />
+<wt:combobox field="Searcher.ActiveFlag" empty-text="全部" />
+</wt:row>
+</wt:searchpanel>
+<wt:grid vm="@Model" url="/Basic/Supplier/Search"/>

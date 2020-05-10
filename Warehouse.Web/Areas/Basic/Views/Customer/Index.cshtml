@@ -1,0 +1,10 @@
+﻿@model Warehouse.Web.ViewModel.Basic.CustomerVMs.CustomerListVM
+
+<wt:searchpanel vm="@Model" reset-btn="true">
+<wt:row items-per-row="ItemsPerRowEnum.Three">
+<wt:textbox field="Searcher.CustomerName" />
+<wt:textbox field="Searcher.Contract" />
+<wt:textbox field="Searcher.ContractPhone" />
+</wt:row>
+</wt:searchpanel>
+<wt:grid vm="@Model" url="/Basic/Customer/Search"/>

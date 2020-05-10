@@ -1,0 +1,18 @@
+﻿@model Warehouse.Web.ViewModel.Basic.SalesmanVMs.SalesmanVM
+
+<wt:form vm="@Model">
+<wt:row items-per-row="ItemsPerRowEnum.Two">
+<wt:textbox field="Entity.SalesmanName" />
+<wt:textbox field="Entity.SalesmanCode" />
+<wt:textbox field="Entity.SalesmanPhone" />
+<wt:datetime field="Entity.EntryTime" />
+<wt:datetime field="Entity.QuitTime" />
+<wt:combobox field="Entity.Sex" />
+<wt:combobox field="Entity.ActiveFlag" />
+<wt:upload field="Entity.PhotoId" />
+</wt:row>
+    <wt:row align="AlignEnum.Right">
+        <wt:submitbutton />
+        <wt:closebutton />
+    </wt:row>
+</wt:form>
