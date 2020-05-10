@@ -42,11 +42,12 @@ namespace Warehouse.Web.Test
             GoodsInfoVM vm = rv.Model as GoodsInfoVM;
             GoodsInfo v = new GoodsInfo();
 			
-            v.GoodsName = "CFb2fRgIT";
-            v.Specification = "KeOPpM";
-            v.SellingPrice = 61;
-            v.InputNumber = 62;
-            v.WarningValue = 22;
+            v.GoodsName = "vhL";
+            v.Specification = "YcSpzRax";
+            v.SellingPrice = 37;
+            v.InputNumber = 67;
+            v.WarningValue = 25;
+            v.StoreHouseId = AddStoreHouse();
             vm.Entity = v;
             _controller.Create(vm);
 
@@ -54,11 +55,11 @@ namespace Warehouse.Web.Test
             {
                 var data = context.Set<GoodsInfo>().FirstOrDefault();
 				
-                Assert.AreEqual(data.GoodsName, "CFb2fRgIT");
-                Assert.AreEqual(data.Specification, "KeOPpM");
-                Assert.AreEqual(data.SellingPrice, 61);
-                Assert.AreEqual(data.InputNumber, 62);
-                Assert.AreEqual(data.WarningValue, 22);
+                Assert.AreEqual(data.GoodsName, "vhL");
+                Assert.AreEqual(data.Specification, "YcSpzRax");
+                Assert.AreEqual(data.SellingPrice, 37);
+                Assert.AreEqual(data.InputNumber, 67);
+                Assert.AreEqual(data.WarningValue, 25);
                 Assert.AreEqual(data.CreateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.CreateTime.Value).Seconds < 10);
             }
@@ -72,11 +73,12 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
        			
-                v.GoodsName = "CFb2fRgIT";
-                v.Specification = "KeOPpM";
-                v.SellingPrice = 61;
-                v.InputNumber = 62;
-                v.WarningValue = 22;
+                v.GoodsName = "vhL";
+                v.Specification = "YcSpzRax";
+                v.SellingPrice = 37;
+                v.InputNumber = 67;
+                v.WarningValue = 25;
+                v.StoreHouseId = AddStoreHouse();
                 context.Set<GoodsInfo>().Add(v);
                 context.SaveChanges();
             }
@@ -88,11 +90,11 @@ namespace Warehouse.Web.Test
             v = new GoodsInfo();
             v.ID = vm.Entity.ID;
        		
-            v.GoodsName = "TERzU6";
-            v.Specification = "o8R1Z";
-            v.SellingPrice = 15;
-            v.InputNumber = 12;
-            v.WarningValue = 8;
+            v.GoodsName = "BDnG";
+            v.Specification = "Dtz";
+            v.SellingPrice = 14;
+            v.InputNumber = 54;
+            v.WarningValue = 86;
             vm.Entity = v;
             vm.FC = new Dictionary<string, object>();
 			
@@ -101,17 +103,18 @@ namespace Warehouse.Web.Test
             vm.FC.Add("Entity.SellingPrice", "");
             vm.FC.Add("Entity.InputNumber", "");
             vm.FC.Add("Entity.WarningValue", "");
+            vm.FC.Add("Entity.StoreHouseId", "");
             _controller.Edit(vm);
 
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
                 var data = context.Set<GoodsInfo>().FirstOrDefault();
  				
-                Assert.AreEqual(data.GoodsName, "TERzU6");
-                Assert.AreEqual(data.Specification, "o8R1Z");
-                Assert.AreEqual(data.SellingPrice, 15);
-                Assert.AreEqual(data.InputNumber, 12);
-                Assert.AreEqual(data.WarningValue, 8);
+                Assert.AreEqual(data.GoodsName, "BDnG");
+                Assert.AreEqual(data.Specification, "Dtz");
+                Assert.AreEqual(data.SellingPrice, 14);
+                Assert.AreEqual(data.InputNumber, 54);
+                Assert.AreEqual(data.WarningValue, 86);
                 Assert.AreEqual(data.UpdateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.UpdateTime.Value).Seconds < 10);
             }
@@ -126,11 +129,12 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
         		
-                v.GoodsName = "CFb2fRgIT";
-                v.Specification = "KeOPpM";
-                v.SellingPrice = 61;
-                v.InputNumber = 62;
-                v.WarningValue = 22;
+                v.GoodsName = "vhL";
+                v.Specification = "YcSpzRax";
+                v.SellingPrice = 37;
+                v.InputNumber = 67;
+                v.WarningValue = 25;
+                v.StoreHouseId = AddStoreHouse();
                 context.Set<GoodsInfo>().Add(v);
                 context.SaveChanges();
             }
@@ -159,11 +163,12 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 				
-                v.GoodsName = "CFb2fRgIT";
-                v.Specification = "KeOPpM";
-                v.SellingPrice = 61;
-                v.InputNumber = 62;
-                v.WarningValue = 22;
+                v.GoodsName = "vhL";
+                v.Specification = "YcSpzRax";
+                v.SellingPrice = 37;
+                v.InputNumber = 67;
+                v.WarningValue = 25;
+                v.StoreHouseId = AddStoreHouse();
                 context.Set<GoodsInfo>().Add(v);
                 context.SaveChanges();
             }
@@ -180,16 +185,18 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 				
-                v1.GoodsName = "CFb2fRgIT";
-                v1.Specification = "KeOPpM";
-                v1.SellingPrice = 61;
-                v1.InputNumber = 62;
-                v1.WarningValue = 22;
-                v2.GoodsName = "TERzU6";
-                v2.Specification = "o8R1Z";
-                v2.SellingPrice = 15;
-                v2.InputNumber = 12;
-                v2.WarningValue = 8;
+                v1.GoodsName = "vhL";
+                v1.Specification = "YcSpzRax";
+                v1.SellingPrice = 37;
+                v1.InputNumber = 67;
+                v1.WarningValue = 25;
+                v1.StoreHouseId = AddStoreHouse();
+                v2.GoodsName = "BDnG";
+                v2.Specification = "Dtz";
+                v2.SellingPrice = 14;
+                v2.InputNumber = 54;
+                v2.WarningValue = 86;
+                v2.StoreHouseId = v1.StoreHouseId; 
                 context.Set<GoodsInfo>().Add(v1);
                 context.Set<GoodsInfo>().Add(v2);
                 context.SaveChanges();
@@ -215,6 +222,22 @@ namespace Warehouse.Web.Test
             Assert.IsInstanceOfType(rv.Model, typeof(IBasePagedListVM<TopBasePoco, BaseSearcher>));
             IActionResult rv2 = _controller.ExportExcel(rv.Model as GoodsInfoListVM);
             Assert.IsTrue((rv2 as FileContentResult).FileContents.Length > 0);
+        }
+
+        private Guid AddStoreHouse()
+        {
+            StoreHouse v = new StoreHouse();
+            using (var context = new DataContext(_seed, DBTypeEnum.Memory))
+            {
+
+                v.WarehouseCode = "iZUW";
+                v.WarehouseAddress = "TmxY";
+                v.ContractName = "5RMRFbb";
+                v.ContractPhone = "UQeQFutWe";
+                context.Set<StoreHouse>().Add(v);
+                context.SaveChanges();
+            }
+            return v.ID;
         }
 
 

@@ -24,11 +24,13 @@ namespace Warehouse.Web.ViewModel.Basic.GoodsInfoVMs
         public ExcelPropety InputNumber_Excel = ExcelPropety.CreateProperty<GoodsInfo>(x => x.InputNumber);
         [Display(Name = "预警值")]
         public ExcelPropety WarningValue_Excel = ExcelPropety.CreateProperty<GoodsInfo>(x => x.WarningValue);
-        [Display(Name = "是否可用")]
-        public ExcelPropety ActiveFlag_Excel = ExcelPropety.CreateProperty<GoodsInfo>(x => x.ActiveFlag);
+        [Display(Name = "所属仓库")]
+        public ExcelPropety StoreHouse_Excel = ExcelPropety.CreateProperty<GoodsInfo>(x => x.StoreHouseId);
 
 	    protected override void InitVM()
         {
+            StoreHouse_Excel.DataType = ColumnDataType.ComboBox;
+            StoreHouse_Excel.ListItems = DC.Set<StoreHouse>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.ContractName);
         }
 
     }

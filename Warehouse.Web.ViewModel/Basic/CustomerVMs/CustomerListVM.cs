@@ -39,7 +39,6 @@ namespace Warehouse.Web.ViewModel.Basic.CustomerVMs
                 this.MakeGridHeader(x => x.ContractPhone),
                 this.MakeGridHeader(x => x.DepositBank),
                 this.MakeGridHeader(x => x.BankAccount),
-                this.MakeGridHeader(x => x.ActiveFlag),
                 this.MakeGridHeaderAction(width: 200)
             };
         }
@@ -48,6 +47,7 @@ namespace Warehouse.Web.ViewModel.Basic.CustomerVMs
         {
             var query = DC.Set<Customer>()
                 .CheckContain(Searcher.CustomerName, x=>x.CustomerName)
+                .CheckContain(Searcher.CustomerPhone, x=>x.CustomerPhone)
                 .CheckContain(Searcher.Contract, x=>x.Contract)
                 .CheckContain(Searcher.ContractPhone, x=>x.ContractPhone)
                 .Select(x => new Customer_View
@@ -61,7 +61,6 @@ namespace Warehouse.Web.ViewModel.Basic.CustomerVMs
                     ContractPhone = x.ContractPhone,
                     DepositBank = x.DepositBank,
                     BankAccount = x.BankAccount,
-                    ActiveFlag = x.ActiveFlag,
                 })
                 .OrderBy(x => x.ID);
             return query;

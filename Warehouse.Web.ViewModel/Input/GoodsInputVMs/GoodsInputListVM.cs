@@ -34,10 +34,10 @@ namespace Warehouse.Web.ViewModel.Input.GoodsInputVMs
                 this.MakeGridHeader(x => x.InputTime),
                 this.MakeGridHeader(x => x.SupplierName_view),
                 this.MakeGridHeader(x => x.GoodsName_view),
+                this.MakeGridHeader(x => x.InputNumber),
                 this.MakeGridHeader(x => x.Producer),
                 this.MakeGridHeader(x => x.BatchNumber),
                 this.MakeGridHeader(x => x.ApprovalNo),
-                this.MakeGridHeader(x => x.ActiveFlag),
                 this.MakeGridHeaderAction(width: 200)
             };
         }
@@ -45,18 +45,21 @@ namespace Warehouse.Web.ViewModel.Input.GoodsInputVMs
         public override IOrderedQueryable<GoodsInput_View> GetSearchQuery()
         {
             var query = DC.Set<GoodsInput>()
+                .CheckEqual(Searcher.SupplierId, x=>x.SupplierId)
                 .CheckEqual(Searcher.GoodsInfoId, x=>x.GoodsInfoId)
-                .CheckEqual(Searcher.ActiveFlag, x=>x.ActiveFlag)
+                .CheckContain(Searcher.Producer, x=>x.Producer)
+                .CheckContain(Searcher.BatchNumber, x=>x.BatchNumber)
+                .CheckContain(Searcher.ApprovalNo, x=>x.ApprovalNo)
                 .Select(x => new GoodsInput_View
                 {
 				    ID = x.ID,
                     InputTime = x.InputTime,
                     SupplierName_view = x.Supplier.SupplierName,
                     GoodsName_view = x.GoodsInfo.GoodsName,
+                    InputNumber = x.InputNumber,
                     Producer = x.Producer,
                     BatchNumber = x.BatchNumber,
                     ApprovalNo = x.ApprovalNo,
-                    ActiveFlag = x.ActiveFlag,
                 })
                 .OrderBy(x => x.ID);
             return query;

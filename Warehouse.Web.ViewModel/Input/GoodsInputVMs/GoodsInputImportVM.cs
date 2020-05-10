@@ -16,15 +16,16 @@ namespace Warehouse.Web.ViewModel.Input.GoodsInputVMs
         public ExcelPropety InputTime_Excel = ExcelPropety.CreateProperty<GoodsInput>(x => x.InputTime);
         [Display(Name = "供应商")]
         public ExcelPropety Supplier_Excel = ExcelPropety.CreateProperty<GoodsInput>(x => x.SupplierId);
+        [Display(Name = "商品名称")]
         public ExcelPropety GoodsInfo_Excel = ExcelPropety.CreateProperty<GoodsInput>(x => x.GoodsInfoId);
+        [Display(Name = "入库数量")]
+        public ExcelPropety InputNumber_Excel = ExcelPropety.CreateProperty<GoodsInput>(x => x.InputNumber);
         [Display(Name = "产地")]
         public ExcelPropety Producer_Excel = ExcelPropety.CreateProperty<GoodsInput>(x => x.Producer);
         [Display(Name = "生产批号")]
         public ExcelPropety BatchNumber_Excel = ExcelPropety.CreateProperty<GoodsInput>(x => x.BatchNumber);
         [Display(Name = "批准文号")]
         public ExcelPropety ApprovalNo_Excel = ExcelPropety.CreateProperty<GoodsInput>(x => x.ApprovalNo);
-        [Display(Name = "是否可用")]
-        public ExcelPropety ActiveFlag_Excel = ExcelPropety.CreateProperty<GoodsInput>(x => x.ActiveFlag);
 
 	    protected override void InitVM()
         {

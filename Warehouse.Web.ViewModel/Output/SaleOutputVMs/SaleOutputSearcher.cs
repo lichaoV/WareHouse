@@ -12,18 +12,19 @@ namespace Warehouse.Web.ViewModel.Output.SaleOutputVMs
 {
     public partial class SaleOutputSearcher : BaseSearcher
     {
-        public List<ComboSelectListItem> AllSalesmans { get; set; }
-        [Display(Name = "销售员")]
-        public Guid? SalesmanId { get; set; }
+        [Display(Name = "销售时间")]
+        public DateRange SaleTime { get; set; }
         public List<ComboSelectListItem> AllCustomers { get; set; }
         [Display(Name = "客户名称")]
         public Guid? CustomerId { get; set; }
         public List<ComboSelectListItem> AllGoodsInfos { get; set; }
+        [Display(Name = "商品名称")]
         public Guid? GoodsInfoId { get; set; }
+        [Display(Name = "支付类型")]
+        public PayTypeEnum? PayType { get; set; }
 
         protected override void InitVM()
         {
-            AllSalesmans = DC.Set<Salesman>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.SalesmanName);
             AllCustomers = DC.Set<Customer>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.CustomerName);
             AllGoodsInfos = DC.Set<GoodsInfo>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.GoodsName);
         }

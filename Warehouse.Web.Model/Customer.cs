@@ -39,8 +39,5 @@ namespace Warehouse.Web.Model
         [RegularExpression("^/^([1-9]{1})(\\d{14}|\\d{18})$/", ErrorMessage = "{0}formaterror")]
         public string BankAccount { get; set; }
 
-        [Display(Name = "是否可用")]
-        public bool ActiveFlag { get; set; }
-
     }
 }

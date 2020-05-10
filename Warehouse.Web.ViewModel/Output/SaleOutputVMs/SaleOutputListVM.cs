@@ -31,7 +31,6 @@ namespace Warehouse.Web.ViewModel.Output.SaleOutputVMs
         protected override IEnumerable<IGridColumn<SaleOutput_View>> InitGridHeader()
         {
             return new List<GridColumn<SaleOutput_View>>{
-                this.MakeGridHeader(x => x.SalesmanName_view),
                 this.MakeGridHeader(x => x.SaleTime),
                 this.MakeGridHeader(x => x.CustomerName_view),
                 this.MakeGridHeader(x => x.GoodsName_view),
@@ -46,13 +45,13 @@ namespace Warehouse.Web.ViewModel.Output.SaleOutputVMs
         public override IOrderedQueryable<SaleOutput_View> GetSearchQuery()
         {
             var query = DC.Set<SaleOutput>()
-                .CheckEqual(Searcher.SalesmanId, x=>x.SalesmanId)
+                .CheckBetween(Searcher.SaleTime?.GetStartTime(), Searcher.SaleTime?.GetEndTime(), x => x.SaleTime, includeMax: false)
                 .CheckEqual(Searcher.CustomerId, x=>x.CustomerId)
                 .CheckEqual(Searcher.GoodsInfoId, x=>x.GoodsInfoId)
+                .CheckEqual(Searcher.PayType, x=>x.PayType)
                 .Select(x => new SaleOutput_View
                 {
 				    ID = x.ID,
-                    SalesmanName_view = x.Salesman.SalesmanName,
                     SaleTime = x.SaleTime,
                     CustomerName_view = x.Customer.CustomerName,
                     GoodsName_view = x.GoodsInfo.GoodsName,
@@ -68,8 +67,6 @@ namespace Warehouse.Web.ViewModel.Output.SaleOutputVMs
     }
 
     public class SaleOutput_View : SaleOutput{
-        [Display(Name = "销售员姓名")]
-        public String SalesmanName_view { get; set; }
         [Display(Name = "客户名称")]
         public String CustomerName_view { get; set; }
         [Display(Name = "商品名称")]

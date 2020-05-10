@@ -14,11 +14,13 @@ namespace Warehouse.Web.ViewModel.Basic.GoodsInfoVMs
     {
         [Display(Name = "商品名称")]
         public String GoodsName { get; set; }
-        [Display(Name = "规格")]
-        public String Specification { get; set; }
+        public List<ComboSelectListItem> AllStoreHouses { get; set; }
+        [Display(Name = "所属仓库")]
+        public Guid? StoreHouseId { get; set; }
 
         protected override void InitVM()
         {
+            AllStoreHouses = DC.Set<StoreHouse>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.ContractName);
         }
 
     }

@@ -8,12 +8,12 @@ using WalkingTec.Mvvm.Core.Extensions;
 using Warehouse.Web.Model;
 
 
-namespace Warehouse.Web.ViewModel.Basic.SalesmanVMs
+namespace Warehouse.Web.ViewModel.Basic.StoreHouseVMs
 {
-    public partial class SalesmanVM : BaseCRUDVM<Salesman>
+    public partial class StoreHouseVM : BaseCRUDVM<StoreHouse>
     {
 
-        public SalesmanVM()
+        public StoreHouseVM()
         {
         }
 

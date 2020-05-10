@@ -37,7 +37,7 @@ namespace Warehouse.Web.ViewModel.Basic.GoodsInfoVMs
                 this.MakeGridHeader(x => x.SellingPrice),
                 this.MakeGridHeader(x => x.InputNumber),
                 this.MakeGridHeader(x => x.WarningValue),
-                this.MakeGridHeader(x => x.ActiveFlag),
+                this.MakeGridHeader(x => x.ContractName_view),
                 this.MakeGridHeader(x => x.PhotoId).SetFormat(PhotoIdFormat),
                 this.MakeGridHeaderAction(width: 200)
             };
@@ -56,7 +56,7 @@ namespace Warehouse.Web.ViewModel.Basic.GoodsInfoVMs
         {
             var query = DC.Set<GoodsInfo>()
                 .CheckContain(Searcher.GoodsName, x=>x.GoodsName)
-                .CheckContain(Searcher.Specification, x=>x.Specification)
+                .CheckEqual(Searcher.StoreHouseId, x=>x.StoreHouseId)
                 .Select(x => new GoodsInfo_View
                 {
 				    ID = x.ID,
@@ -66,7 +66,7 @@ namespace Warehouse.Web.ViewModel.Basic.GoodsInfoVMs
                     SellingPrice = x.SellingPrice,
                     InputNumber = x.InputNumber,
                     WarningValue = x.WarningValue,
-                    ActiveFlag = x.ActiveFlag,
+                    ContractName_view = x.StoreHouse.ContractName,
                     PhotoId = x.PhotoId,
                 })
                 .OrderBy(x => x.ID);
@@ -76,6 +76,8 @@ namespace Warehouse.Web.ViewModel.Basic.GoodsInfoVMs
     }
 
     public class GoodsInfo_View : GoodsInfo{
+        [Display(Name = "负责人")]
+        public String ContractName_view { get; set; }
 
     }
 }

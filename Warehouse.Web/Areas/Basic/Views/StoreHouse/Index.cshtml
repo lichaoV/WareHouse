@@ -1,0 +1,9 @@
+﻿@model Warehouse.Web.ViewModel.Basic.StoreHouseVMs.StoreHouseListVM
+
+<wt:searchpanel vm="@Model" reset-btn="true">
+<wt:row items-per-row="ItemsPerRowEnum.Three">
+<wt:textbox field="Searcher.WarehouseCode" />
+<wt:textbox field="Searcher.ContractName" />
+</wt:row>
+</wt:searchpanel>
+<wt:grid vm="@Model" url="/Basic/StoreHouse/Search"/>

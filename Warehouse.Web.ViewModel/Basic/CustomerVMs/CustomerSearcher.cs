@@ -14,6 +14,8 @@ namespace Warehouse.Web.ViewModel.Basic.CustomerVMs
     {
         [Display(Name = "客户名称")]
         public String CustomerName { get; set; }
+        [Display(Name = "客户电话")]
+        public String CustomerPhone { get; set; }
         [Display(Name = "联系人")]
         public String Contract { get; set; }
         [Display(Name = "联系人电话")]

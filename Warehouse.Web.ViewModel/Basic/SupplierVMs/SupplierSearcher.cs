@@ -20,8 +20,6 @@ namespace Warehouse.Web.ViewModel.Basic.SupplierVMs
         public String Contract { get; set; }
         [Display(Name = "联系电话")]
         public String ContractPhone { get; set; }
-        [Display(Name = "是否可用")]
-        public Boolean? ActiveFlag { get; set; }
 
         protected override void InitVM()
         {

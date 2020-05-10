@@ -22,7 +22,12 @@ namespace Warehouse.Web.Model
         [Required(ErrorMessage = "{0}required")]
         public Guid GoodsInfoId { get; set; }
 
+        [Display(Name = "商品名称")]
         public GoodsInfo GoodsInfo { get; set; }
+
+        [Display(Name = "入库数量")]
+        [Required(ErrorMessage = "{0}required")]
+        public int InputNumber { get; set; }
 
         [Display(Name = "产地")]
         [Required(ErrorMessage = "{0}required")]
@@ -35,8 +40,5 @@ namespace Warehouse.Web.Model
         [Display(Name = "批准文号")]
         [Required(ErrorMessage = "{0}required")]
         public string ApprovalNo { get; set; }
-
-        [Display(Name = "是否可用")]
-        public bool ActiveFlag { get; set; }
     }
 }

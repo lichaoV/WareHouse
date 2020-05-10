@@ -31,8 +31,12 @@ namespace Warehouse.Web.Model
         [Required(ErrorMessage = "{0}required")]
         public int WarningValue { get; set; }
 
-        [Display(Name = "是否可用")]
-        public bool ActiveFlag { get; set; }
+        [Display(Name = "所属仓库")]
+        [Required(ErrorMessage = "{0}required")]
+        public Guid StoreHouseId { get; set; }
+
+        [Display(Name = "所属仓库")]
+        public StoreHouse StoreHouse { get; set; }
 
         [Display(Name = "商品图片")]
         public Guid? PhotoId { get; set; }

@@ -44,9 +44,10 @@ namespace Warehouse.Web.Test
 			
             v.SupplierId = AddSupplier();
             v.GoodsInfoId = AddGoodsInfo();
-            v.Producer = "phXjSozU";
-            v.BatchNumber = "OLOV";
-            v.ApprovalNo = "VM2iKjjdS";
+            v.InputNumber = 87;
+            v.Producer = "GAkoZLR";
+            v.BatchNumber = "A2w6DoAs";
+            v.ApprovalNo = "Z4cm";
             vm.Entity = v;
             _controller.Create(vm);
 
@@ -54,9 +55,10 @@ namespace Warehouse.Web.Test
             {
                 var data = context.Set<GoodsInput>().FirstOrDefault();
 				
-                Assert.AreEqual(data.Producer, "phXjSozU");
-                Assert.AreEqual(data.BatchNumber, "OLOV");
-                Assert.AreEqual(data.ApprovalNo, "VM2iKjjdS");
+                Assert.AreEqual(data.InputNumber, 87);
+                Assert.AreEqual(data.Producer, "GAkoZLR");
+                Assert.AreEqual(data.BatchNumber, "A2w6DoAs");
+                Assert.AreEqual(data.ApprovalNo, "Z4cm");
                 Assert.AreEqual(data.CreateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.CreateTime.Value).Seconds < 10);
             }
@@ -72,9 +74,10 @@ namespace Warehouse.Web.Test
        			
                 v.SupplierId = AddSupplier();
                 v.GoodsInfoId = AddGoodsInfo();
-                v.Producer = "phXjSozU";
-                v.BatchNumber = "OLOV";
-                v.ApprovalNo = "VM2iKjjdS";
+                v.InputNumber = 87;
+                v.Producer = "GAkoZLR";
+                v.BatchNumber = "A2w6DoAs";
+                v.ApprovalNo = "Z4cm";
                 context.Set<GoodsInput>().Add(v);
                 context.SaveChanges();
             }
@@ -86,14 +89,16 @@ namespace Warehouse.Web.Test
             v = new GoodsInput();
             v.ID = vm.Entity.ID;
        		
-            v.Producer = "KUe7";
-            v.BatchNumber = "tg0NvBp";
-            v.ApprovalNo = "1LnTIz";
+            v.InputNumber = 19;
+            v.Producer = "rzWULy";
+            v.BatchNumber = "IQK0Yeopa";
+            v.ApprovalNo = "Usha";
             vm.Entity = v;
             vm.FC = new Dictionary<string, object>();
 			
             vm.FC.Add("Entity.SupplierId", "");
             vm.FC.Add("Entity.GoodsInfoId", "");
+            vm.FC.Add("Entity.InputNumber", "");
             vm.FC.Add("Entity.Producer", "");
             vm.FC.Add("Entity.BatchNumber", "");
             vm.FC.Add("Entity.ApprovalNo", "");
@@ -103,9 +108,10 @@ namespace Warehouse.Web.Test
             {
                 var data = context.Set<GoodsInput>().FirstOrDefault();
  				
-                Assert.AreEqual(data.Producer, "KUe7");
-                Assert.AreEqual(data.BatchNumber, "tg0NvBp");
-                Assert.AreEqual(data.ApprovalNo, "1LnTIz");
+                Assert.AreEqual(data.InputNumber, 19);
+                Assert.AreEqual(data.Producer, "rzWULy");
+                Assert.AreEqual(data.BatchNumber, "IQK0Yeopa");
+                Assert.AreEqual(data.ApprovalNo, "Usha");
                 Assert.AreEqual(data.UpdateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.UpdateTime.Value).Seconds < 10);
             }
@@ -122,9 +128,10 @@ namespace Warehouse.Web.Test
         		
                 v.SupplierId = AddSupplier();
                 v.GoodsInfoId = AddGoodsInfo();
-                v.Producer = "phXjSozU";
-                v.BatchNumber = "OLOV";
-                v.ApprovalNo = "VM2iKjjdS";
+                v.InputNumber = 87;
+                v.Producer = "GAkoZLR";
+                v.BatchNumber = "A2w6DoAs";
+                v.ApprovalNo = "Z4cm";
                 context.Set<GoodsInput>().Add(v);
                 context.SaveChanges();
             }
@@ -155,9 +162,10 @@ namespace Warehouse.Web.Test
 				
                 v.SupplierId = AddSupplier();
                 v.GoodsInfoId = AddGoodsInfo();
-                v.Producer = "phXjSozU";
-                v.BatchNumber = "OLOV";
-                v.ApprovalNo = "VM2iKjjdS";
+                v.InputNumber = 87;
+                v.Producer = "GAkoZLR";
+                v.BatchNumber = "A2w6DoAs";
+                v.ApprovalNo = "Z4cm";
                 context.Set<GoodsInput>().Add(v);
                 context.SaveChanges();
             }
@@ -176,14 +184,16 @@ namespace Warehouse.Web.Test
 				
                 v1.SupplierId = AddSupplier();
                 v1.GoodsInfoId = AddGoodsInfo();
-                v1.Producer = "phXjSozU";
-                v1.BatchNumber = "OLOV";
-                v1.ApprovalNo = "VM2iKjjdS";
+                v1.InputNumber = 87;
+                v1.Producer = "GAkoZLR";
+                v1.BatchNumber = "A2w6DoAs";
+                v1.ApprovalNo = "Z4cm";
                 v2.SupplierId = v1.SupplierId; 
                 v2.GoodsInfoId = v1.GoodsInfoId; 
-                v2.Producer = "KUe7";
-                v2.BatchNumber = "tg0NvBp";
-                v2.ApprovalNo = "1LnTIz";
+                v2.InputNumber = 19;
+                v2.Producer = "rzWULy";
+                v2.BatchNumber = "IQK0Yeopa";
+                v2.ApprovalNo = "Usha";
                 context.Set<GoodsInput>().Add(v1);
                 context.Set<GoodsInput>().Add(v2);
                 context.SaveChanges();
@@ -217,10 +227,26 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 
-                v.SupplierName = "R3VibNvKi";
-                v.Contract = "0XHgMb8s";
-                v.ContractPhone = "YECSFGi";
+                v.SupplierName = "3Vt";
+                v.Contract = "OUQ51b47G";
+                v.ContractPhone = "pYRAyN";
                 context.Set<Supplier>().Add(v);
+                context.SaveChanges();
+            }
+            return v.ID;
+        }
+
+        private Guid AddStoreHouse()
+        {
+            StoreHouse v = new StoreHouse();
+            using (var context = new DataContext(_seed, DBTypeEnum.Memory))
+            {
+
+                v.WarehouseCode = "eumrkUhk";
+                v.WarehouseAddress = "1lcQ";
+                v.ContractName = "paWDf6YK";
+                v.ContractPhone = "2CFrNFzy";
+                context.Set<StoreHouse>().Add(v);
                 context.SaveChanges();
             }
             return v.ID;
@@ -232,11 +258,12 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 
-                v.GoodsName = "O1ad";
-                v.Specification = "OCEZ";
-                v.SellingPrice = 32;
-                v.InputNumber = 41;
-                v.WarningValue = 87;
+                v.GoodsName = "PWFs";
+                v.Specification = "Tq9KUjH";
+                v.SellingPrice = 87;
+                v.InputNumber = 72;
+                v.WarningValue = 14;
+                v.StoreHouseId = AddStoreHouse();
                 context.Set<GoodsInfo>().Add(v);
                 context.SaveChanges();
             }

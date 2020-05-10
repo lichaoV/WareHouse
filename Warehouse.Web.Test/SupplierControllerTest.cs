@@ -42,9 +42,9 @@ namespace Warehouse.Web.Test
             SupplierVM vm = rv.Model as SupplierVM;
             Supplier v = new Supplier();
 			
-            v.SupplierName = "RLDsNsylB";
-            v.Contract = "eUN";
-            v.ContractPhone = "z1DBC";
+            v.SupplierName = "bem";
+            v.Contract = "uQte8AWkm";
+            v.ContractPhone = "OX9Psxo";
             vm.Entity = v;
             _controller.Create(vm);
 
@@ -52,9 +52,9 @@ namespace Warehouse.Web.Test
             {
                 var data = context.Set<Supplier>().FirstOrDefault();
 				
-                Assert.AreEqual(data.SupplierName, "RLDsNsylB");
-                Assert.AreEqual(data.Contract, "eUN");
-                Assert.AreEqual(data.ContractPhone, "z1DBC");
+                Assert.AreEqual(data.SupplierName, "bem");
+                Assert.AreEqual(data.Contract, "uQte8AWkm");
+                Assert.AreEqual(data.ContractPhone, "OX9Psxo");
                 Assert.AreEqual(data.CreateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.CreateTime.Value).Seconds < 10);
             }
@@ -68,9 +68,9 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
        			
-                v.SupplierName = "RLDsNsylB";
-                v.Contract = "eUN";
-                v.ContractPhone = "z1DBC";
+                v.SupplierName = "bem";
+                v.Contract = "uQte8AWkm";
+                v.ContractPhone = "OX9Psxo";
                 context.Set<Supplier>().Add(v);
                 context.SaveChanges();
             }
@@ -82,9 +82,9 @@ namespace Warehouse.Web.Test
             v = new Supplier();
             v.ID = vm.Entity.ID;
        		
-            v.SupplierName = "yJqCDMaM";
-            v.Contract = "SNUjoc";
-            v.ContractPhone = "aW1b";
+            v.SupplierName = "16Oix";
+            v.Contract = "V7qcvn";
+            v.ContractPhone = "ryFK9";
             vm.Entity = v;
             vm.FC = new Dictionary<string, object>();
 			
@@ -97,9 +97,9 @@ namespace Warehouse.Web.Test
             {
                 var data = context.Set<Supplier>().FirstOrDefault();
  				
-                Assert.AreEqual(data.SupplierName, "yJqCDMaM");
-                Assert.AreEqual(data.Contract, "SNUjoc");
-                Assert.AreEqual(data.ContractPhone, "aW1b");
+                Assert.AreEqual(data.SupplierName, "16Oix");
+                Assert.AreEqual(data.Contract, "V7qcvn");
+                Assert.AreEqual(data.ContractPhone, "ryFK9");
                 Assert.AreEqual(data.UpdateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.UpdateTime.Value).Seconds < 10);
             }
@@ -114,9 +114,9 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
         		
-                v.SupplierName = "RLDsNsylB";
-                v.Contract = "eUN";
-                v.ContractPhone = "z1DBC";
+                v.SupplierName = "bem";
+                v.Contract = "uQte8AWkm";
+                v.ContractPhone = "OX9Psxo";
                 context.Set<Supplier>().Add(v);
                 context.SaveChanges();
             }
@@ -145,9 +145,9 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 				
-                v.SupplierName = "RLDsNsylB";
-                v.Contract = "eUN";
-                v.ContractPhone = "z1DBC";
+                v.SupplierName = "bem";
+                v.Contract = "uQte8AWkm";
+                v.ContractPhone = "OX9Psxo";
                 context.Set<Supplier>().Add(v);
                 context.SaveChanges();
             }
@@ -164,12 +164,12 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 				
-                v1.SupplierName = "RLDsNsylB";
-                v1.Contract = "eUN";
-                v1.ContractPhone = "z1DBC";
-                v2.SupplierName = "yJqCDMaM";
-                v2.Contract = "SNUjoc";
-                v2.ContractPhone = "aW1b";
+                v1.SupplierName = "bem";
+                v1.Contract = "uQte8AWkm";
+                v1.ContractPhone = "OX9Psxo";
+                v2.SupplierName = "16Oix";
+                v2.Contract = "V7qcvn";
+                v2.ContractPhone = "ryFK9";
                 context.Set<Supplier>().Add(v1);
                 context.Set<Supplier>().Add(v2);
                 context.SaveChanges();

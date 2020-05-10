@@ -1,0 +1,14 @@
+﻿@model Warehouse.Web.ViewModel.Basic.StoreHouseVMs.StoreHouseVM
+
+<wt:form vm="@Model">
+<wt:row items-per-row="ItemsPerRowEnum.Two">
+<wt:display field="Entity.WarehouseCode" />
+<wt:display field="Entity.WarehouseAddress" />
+<wt:display field="Entity.ContractName" />
+<wt:display field="Entity.ContractPhone" />
+<wt:display field="Entity.Remark" />
+</wt:row>
+    <wt:row align=" AlignEnum.Right">
+        <wt:closebutton />
+    </wt:row>
+</wt:form>

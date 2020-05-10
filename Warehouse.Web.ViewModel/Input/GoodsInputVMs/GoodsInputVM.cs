@@ -24,11 +24,11 @@ namespace Warehouse.Web.ViewModel.Input.GoodsInputVMs
         protected override void InitVM()
         {
             AllSuppliers = DC.Set<Supplier>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.SupplierName);
-            AllGoodsInfos = DC.Set<GoodsInfo>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.GoodsName + "   " + y.Specification);
+            AllGoodsInfos = DC.Set<GoodsInfo>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.GoodsName);
         }
 
         public override void DoAdd()
-        {
+        {           
             base.DoAdd();
         }
 

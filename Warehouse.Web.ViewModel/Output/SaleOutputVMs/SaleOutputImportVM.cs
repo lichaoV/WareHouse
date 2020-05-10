@@ -12,12 +12,11 @@ namespace Warehouse.Web.ViewModel.Output.SaleOutputVMs
 {
     public partial class SaleOutputTemplateVM : BaseTemplateVM
     {
-        [Display(Name = "销售员")]
-        public ExcelPropety Salesman_Excel = ExcelPropety.CreateProperty<SaleOutput>(x => x.SalesmanId);
         [Display(Name = "销售时间")]
         public ExcelPropety SaleTime_Excel = ExcelPropety.CreateProperty<SaleOutput>(x => x.SaleTime);
         [Display(Name = "客户名称")]
         public ExcelPropety Customer_Excel = ExcelPropety.CreateProperty<SaleOutput>(x => x.CustomerId);
+        [Display(Name = "商品名称")]
         public ExcelPropety GoodsInfo_Excel = ExcelPropety.CreateProperty<SaleOutput>(x => x.GoodsInfoId);
         [Display(Name = "销售数量")]
         public ExcelPropety SaleNumber_Excel = ExcelPropety.CreateProperty<SaleOutput>(x => x.SaleNumber);
@@ -30,8 +29,6 @@ namespace Warehouse.Web.ViewModel.Output.SaleOutputVMs
 
 	    protected override void InitVM()
         {
-            Salesman_Excel.DataType = ColumnDataType.ComboBox;
-            Salesman_Excel.ListItems = DC.Set<Salesman>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.SalesmanName);
             Customer_Excel.DataType = ColumnDataType.ComboBox;
             Customer_Excel.ListItems = DC.Set<Customer>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.CustomerName);
             GoodsInfo_Excel.DataType = ColumnDataType.ComboBox;

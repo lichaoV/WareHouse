@@ -2,8 +2,11 @@
 
 <wt:searchpanel vm="@Model" reset-btn="true">
 <wt:row items-per-row="ItemsPerRowEnum.Three">
+<wt:combobox field="Searcher.SupplierId" items="Searcher.AllSuppliers" empty-text="全部" />
 <wt:combobox field="Searcher.GoodsInfoId" items="Searcher.AllGoodsInfos" empty-text="全部" />
-<wt:combobox field="Searcher.ActiveFlag" empty-text="全部" />
+<wt:textbox field="Searcher.Producer" />
+<wt:textbox field="Searcher.BatchNumber" />
+<wt:textbox field="Searcher.ApprovalNo" />
 </wt:row>
 </wt:searchpanel>
 <wt:grid vm="@Model" url="/Input/GoodsInput/Search"/>

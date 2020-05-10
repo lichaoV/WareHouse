@@ -37,8 +37,5 @@ namespace Warehouse.Web.Model
 
         [Display(Name = "银行账户")]
         public string BankAccount { get; set; }
-
-        [Display(Name = "是否可用")]
-        public bool ActiveFlag { get; set; }
     }
 }

@@ -4,25 +4,25 @@ using System;
 using WalkingTec.Mvvm.Core;
 using WalkingTec.Mvvm.Mvc;
 using WalkingTec.Mvvm.Core.Extensions;
-using Warehouse.Web.ViewModel.Basic.SalesmanVMs;
+using Warehouse.Web.ViewModel.Basic.StoreHouseVMs;
 
 namespace Warehouse.Web.Controllers
 {
     [Area("Basic")]
-    [ActionDescription("销售员管理")]
-    public partial class SalesmanController : BaseController
+    [ActionDescription("仓库管理")]
+    public partial class StoreHouseController : BaseController
     {
         #region 搜索
         [ActionDescription("搜索")]
         public ActionResult Index()
         {
-            var vm = CreateVM<SalesmanListVM>();
+            var vm = CreateVM<StoreHouseListVM>();
             return PartialView(vm);
         }
 
         [ActionDescription("搜索")]
         [HttpPost]
-        public string Search(SalesmanListVM vm)
+        public string Search(StoreHouseListVM vm)
         {
             return vm.GetJson(false);
         }
@@ -33,13 +33,13 @@ namespace Warehouse.Web.Controllers
         [ActionDescription("新建")]
         public ActionResult Create()
         {
-            var vm = CreateVM<SalesmanVM>();
+            var vm = CreateVM<StoreHouseVM>();
             return PartialView(vm);
         }
 
         [HttpPost]
         [ActionDescription("新建")]
-        public ActionResult Create(SalesmanVM vm)
+        public ActionResult Create(StoreHouseVM vm)
         {
             if (!ModelState.IsValid)
             {
@@ -65,14 +65,14 @@ namespace Warehouse.Web.Controllers
         [ActionDescription("修改")]
         public ActionResult Edit(string id)
         {
-            var vm = CreateVM<SalesmanVM>(id);
+            var vm = CreateVM<StoreHouseVM>(id);
             return PartialView(vm);
         }
 
         [ActionDescription("修改")]
         [HttpPost]
         [ValidateFormItemOnly]
-        public ActionResult Edit(SalesmanVM vm)
+        public ActionResult Edit(StoreHouseVM vm)
         {
             if (!ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace Warehouse.Web.Controllers
         [ActionDescription("删除")]
         public ActionResult Delete(string id)
         {
-            var vm = CreateVM<SalesmanVM>(id);
+            var vm = CreateVM<StoreHouseVM>(id);
             return PartialView(vm);
         }
 
@@ -106,7 +106,7 @@ namespace Warehouse.Web.Controllers
         [HttpPost]
         public ActionResult Delete(string id, IFormCollection nouse)
         {
-            var vm = CreateVM<SalesmanVM>(id);
+            var vm = CreateVM<StoreHouseVM>(id);
             vm.DoDelete();
             if (!ModelState.IsValid)
             {
@@ -123,7 +123,7 @@ namespace Warehouse.Web.Controllers
         [ActionDescription("详细")]
         public ActionResult Details(string id)
         {
-            var vm = CreateVM<SalesmanVM>(id);
+            var vm = CreateVM<StoreHouseVM>(id);
             return PartialView(vm);
         }
         #endregion
@@ -133,13 +133,13 @@ namespace Warehouse.Web.Controllers
         [ActionDescription("批量修改")]
         public ActionResult BatchEdit(string[] IDs)
         {
-            var vm = CreateVM<SalesmanBatchVM>(Ids: IDs);
+            var vm = CreateVM<StoreHouseBatchVM>(Ids: IDs);
             return PartialView(vm);
         }
 
         [HttpPost]
         [ActionDescription("批量修改")]
-        public ActionResult DoBatchEdit(SalesmanBatchVM vm, IFormCollection nouse)
+        public ActionResult DoBatchEdit(StoreHouseBatchVM vm, IFormCollection nouse)
         {
             if (!ModelState.IsValid || !vm.DoBatchEdit())
             {
@@ -157,13 +157,13 @@ namespace Warehouse.Web.Controllers
         [ActionDescription("批量删除")]
         public ActionResult BatchDelete(string[] IDs)
         {
-            var vm = CreateVM<SalesmanBatchVM>(Ids: IDs);
+            var vm = CreateVM<StoreHouseBatchVM>(Ids: IDs);
             return PartialView(vm);
         }
 
         [HttpPost]
         [ActionDescription("批量删除")]
-        public ActionResult DoBatchDelete(SalesmanBatchVM vm, IFormCollection nouse)
+        public ActionResult DoBatchDelete(StoreHouseBatchVM vm, IFormCollection nouse)
         {
             if (!ModelState.IsValid || !vm.DoBatchDelete())
             {
@@ -180,13 +180,13 @@ namespace Warehouse.Web.Controllers
 		[ActionDescription("导入")]
         public ActionResult Import()
         {
-            var vm = CreateVM<SalesmanImportVM>();
+            var vm = CreateVM<StoreHouseImportVM>();
             return PartialView(vm);
         }
 
         [HttpPost]
         [ActionDescription("导入")]
-        public ActionResult Import(SalesmanImportVM vm, IFormCollection nouse)
+        public ActionResult Import(StoreHouseImportVM vm, IFormCollection nouse)
         {
             if (vm.ErrorListVM.EntityList.Count > 0 || !vm.BatchSaveData())
             {
@@ -201,11 +201,11 @@ namespace Warehouse.Web.Controllers
 
         [ActionDescription("导出")]
         [HttpPost]
-        public IActionResult ExportExcel(SalesmanListVM vm)
+        public IActionResult ExportExcel(StoreHouseListVM vm)
         {
             vm.SearcherMode = vm.Ids != null && vm.Ids.Count > 0 ? ListVMSearchModeEnum.CheckExport : ListVMSearchModeEnum.Export;
             var data = vm.GenerateExcel();
-            return File(data, "application/vnd.ms-excel", $"Export_Salesman_{DateTime.Now.ToString("yyyy-MM-dd")}.xls");
+            return File(data, "application/vnd.ms-excel", $"Export_StoreHouse_{DateTime.Now.ToString("yyyy-MM-dd")}.xls");
         }
 
     }

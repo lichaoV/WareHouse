@@ -42,9 +42,9 @@ namespace Warehouse.Web.Test
             CustomerVM vm = rv.Model as CustomerVM;
             Customer v = new Customer();
 			
-            v.CustomerName = "kqblfz";
-            v.Contract = "3NjMeNOb0";
-            v.ContractPhone = "JsnbWwyR";
+            v.CustomerName = "NgFJvC0s";
+            v.Contract = "hvW";
+            v.ContractPhone = "wJ33Sm";
             vm.Entity = v;
             _controller.Create(vm);
 
@@ -52,9 +52,9 @@ namespace Warehouse.Web.Test
             {
                 var data = context.Set<Customer>().FirstOrDefault();
 				
-                Assert.AreEqual(data.CustomerName, "kqblfz");
-                Assert.AreEqual(data.Contract, "3NjMeNOb0");
-                Assert.AreEqual(data.ContractPhone, "JsnbWwyR");
+                Assert.AreEqual(data.CustomerName, "NgFJvC0s");
+                Assert.AreEqual(data.Contract, "hvW");
+                Assert.AreEqual(data.ContractPhone, "wJ33Sm");
                 Assert.AreEqual(data.CreateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.CreateTime.Value).Seconds < 10);
             }
@@ -68,9 +68,9 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
        			
-                v.CustomerName = "kqblfz";
-                v.Contract = "3NjMeNOb0";
-                v.ContractPhone = "JsnbWwyR";
+                v.CustomerName = "NgFJvC0s";
+                v.Contract = "hvW";
+                v.ContractPhone = "wJ33Sm";
                 context.Set<Customer>().Add(v);
                 context.SaveChanges();
             }
@@ -82,9 +82,9 @@ namespace Warehouse.Web.Test
             v = new Customer();
             v.ID = vm.Entity.ID;
        		
-            v.CustomerName = "B0YSO";
-            v.Contract = "Zwgfj45l";
-            v.ContractPhone = "v2jYAFjJ";
+            v.CustomerName = "rQk39Lg9";
+            v.Contract = "wGM";
+            v.ContractPhone = "zm27JoAA";
             vm.Entity = v;
             vm.FC = new Dictionary<string, object>();
 			
@@ -97,9 +97,9 @@ namespace Warehouse.Web.Test
             {
                 var data = context.Set<Customer>().FirstOrDefault();
  				
-                Assert.AreEqual(data.CustomerName, "B0YSO");
-                Assert.AreEqual(data.Contract, "Zwgfj45l");
-                Assert.AreEqual(data.ContractPhone, "v2jYAFjJ");
+                Assert.AreEqual(data.CustomerName, "rQk39Lg9");
+                Assert.AreEqual(data.Contract, "wGM");
+                Assert.AreEqual(data.ContractPhone, "zm27JoAA");
                 Assert.AreEqual(data.UpdateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.UpdateTime.Value).Seconds < 10);
             }
@@ -114,9 +114,9 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
         		
-                v.CustomerName = "kqblfz";
-                v.Contract = "3NjMeNOb0";
-                v.ContractPhone = "JsnbWwyR";
+                v.CustomerName = "NgFJvC0s";
+                v.Contract = "hvW";
+                v.ContractPhone = "wJ33Sm";
                 context.Set<Customer>().Add(v);
                 context.SaveChanges();
             }
@@ -145,9 +145,9 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 				
-                v.CustomerName = "kqblfz";
-                v.Contract = "3NjMeNOb0";
-                v.ContractPhone = "JsnbWwyR";
+                v.CustomerName = "NgFJvC0s";
+                v.Contract = "hvW";
+                v.ContractPhone = "wJ33Sm";
                 context.Set<Customer>().Add(v);
                 context.SaveChanges();
             }
@@ -164,12 +164,12 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 				
-                v1.CustomerName = "kqblfz";
-                v1.Contract = "3NjMeNOb0";
-                v1.ContractPhone = "JsnbWwyR";
-                v2.CustomerName = "B0YSO";
-                v2.Contract = "Zwgfj45l";
-                v2.ContractPhone = "v2jYAFjJ";
+                v1.CustomerName = "NgFJvC0s";
+                v1.Contract = "hvW";
+                v1.ContractPhone = "wJ33Sm";
+                v2.CustomerName = "rQk39Lg9";
+                v2.Contract = "wGM";
+                v2.ContractPhone = "zm27JoAA";
                 context.Set<Customer>().Add(v1);
                 context.Set<Customer>().Add(v2);
                 context.SaveChanges();

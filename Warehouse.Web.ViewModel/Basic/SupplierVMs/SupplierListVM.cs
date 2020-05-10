@@ -39,7 +39,6 @@ namespace Warehouse.Web.ViewModel.Basic.SupplierVMs
                 this.MakeGridHeader(x => x.ContractPhone),
                 this.MakeGridHeader(x => x.DepositBank),
                 this.MakeGridHeader(x => x.BankAccount),
-                this.MakeGridHeader(x => x.ActiveFlag),
                 this.MakeGridHeaderAction(width: 200)
             };
         }
@@ -51,7 +50,6 @@ namespace Warehouse.Web.ViewModel.Basic.SupplierVMs
                 .CheckContain(Searcher.SupplierPhone, x=>x.SupplierPhone)
                 .CheckContain(Searcher.Contract, x=>x.Contract)
                 .CheckContain(Searcher.ContractPhone, x=>x.ContractPhone)
-                .CheckEqual(Searcher.ActiveFlag, x=>x.ActiveFlag)
                 .Select(x => new Supplier_View
                 {
 				    ID = x.ID,
@@ -63,7 +61,6 @@ namespace Warehouse.Web.ViewModel.Basic.SupplierVMs
                     ContractPhone = x.ContractPhone,
                     DepositBank = x.DepositBank,
                     BankAccount = x.BankAccount,
-                    ActiveFlag = x.ActiveFlag,
                 })
                 .OrderBy(x => x.ID);
             return query;

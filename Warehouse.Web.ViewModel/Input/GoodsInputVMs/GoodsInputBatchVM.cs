@@ -25,9 +25,19 @@ namespace Warehouse.Web.ViewModel.Input.GoodsInputVMs
     /// </summary>
     public class GoodsInput_BatchEdit : BaseVM
     {
+        public List<ComboSelectListItem> AllSuppliers { get; set; }
+        [Display(Name = "供应商")]
+        public Guid? SupplierId { get; set; }
+        [Display(Name = "产地")]
+        public String Producer { get; set; }
+        [Display(Name = "生产批号")]
+        public String BatchNumber { get; set; }
+        [Display(Name = "批准文号")]
+        public String ApprovalNo { get; set; }
 
         protected override void InitVM()
         {
+            AllSuppliers = DC.Set<Supplier>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.SupplierName);
         }
 
     }

@@ -18,13 +18,6 @@ namespace Warehouse.Web.Model
 
     public class SaleOutput : PersistPoco
     {
-        [Display(Name = "销售员")]
-        [Required(ErrorMessage = "{0}required")]
-        public Guid SalesmanId { get; set; }
-
-        [Display(Name = "销售员")]
-        public Salesman Salesman { get; set; }
-
         [Display(Name = "销售时间")]
         [Required(ErrorMessage = "{0}required")]
         public DateTime SaleTime { get; set; }
@@ -40,6 +33,7 @@ namespace Warehouse.Web.Model
         [Required(ErrorMessage = "{0}required")]
         public Guid? GoodsInfoId { get; set; }
 
+        [Display(Name = "商品名称")]
         public GoodsInfo GoodsInfo { get; set; }
 
         [Display(Name = "销售数量")]

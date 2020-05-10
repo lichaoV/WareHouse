@@ -12,13 +12,16 @@ namespace Warehouse.Web.ViewModel.Basic.GoodsInfoVMs
 {
     public partial class GoodsInfoVM : BaseCRUDVM<GoodsInfo>
     {
+        public List<ComboSelectListItem> AllStoreHouses { get; set; }
 
         public GoodsInfoVM()
         {
+            SetInclude(x => x.StoreHouse);
         }
 
         protected override void InitVM()
         {
+            AllStoreHouses = DC.Set<StoreHouse>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.ContractName);
         }
 
         public override void DoAdd()

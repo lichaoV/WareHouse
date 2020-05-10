@@ -8,14 +8,14 @@ using WalkingTec.Mvvm.Core.Extensions;
 using Warehouse.Web.Model;
 
 
-namespace Warehouse.Web.ViewModel.Basic.GoodsInfoVMs
+namespace Warehouse.Web.ViewModel.Basic.StoreHouseVMs
 {
-    public partial class GoodsInfoBatchVM : BaseBatchVM<GoodsInfo, GoodsInfo_BatchEdit>
+    public partial class StoreHouseBatchVM : BaseBatchVM<StoreHouse, StoreHouse_BatchEdit>
     {
-        public GoodsInfoBatchVM()
+        public StoreHouseBatchVM()
         {
-            ListVM = new GoodsInfoListVM();
-            LinkedVM = new GoodsInfo_BatchEdit();
+            ListVM = new StoreHouseListVM();
+            LinkedVM = new StoreHouse_BatchEdit();
         }
 
     }
@@ -23,10 +23,8 @@ namespace Warehouse.Web.ViewModel.Basic.GoodsInfoVMs
 	/// <summary>
     /// 批量编辑字段类
     /// </summary>
-    public class GoodsInfo_BatchEdit : BaseVM
+    public class StoreHouse_BatchEdit : BaseVM
     {
-        [Display(Name = "预警值")]
-        public Int32? WarningValue { get; set; }
 
         protected override void InitVM()
         {

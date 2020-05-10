@@ -3,7 +3,7 @@
 <wt:searchpanel vm="@Model" reset-btn="true">
 <wt:row items-per-row="ItemsPerRowEnum.Three">
 <wt:textbox field="Searcher.GoodsName" />
-<wt:textbox field="Searcher.Specification" />
+<wt:combobox field="Searcher.StoreHouseId" items="Searcher.AllStoreHouses" empty-text="全部" />
 </wt:row>
 </wt:searchpanel>
 <wt:grid vm="@Model" url="/Basic/GoodsInfo/Search"/>

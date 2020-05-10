@@ -28,8 +28,6 @@ namespace Warehouse.Web.ViewModel.Basic.CustomerVMs
         public ExcelPropety DepositBank_Excel = ExcelPropety.CreateProperty<Customer>(x => x.DepositBank);
         [Display(Name = "银行账户")]
         public ExcelPropety BankAccount_Excel = ExcelPropety.CreateProperty<Customer>(x => x.BankAccount);
-        [Display(Name = "是否可用")]
-        public ExcelPropety ActiveFlag_Excel = ExcelPropety.CreateProperty<Customer>(x => x.ActiveFlag);
 
 	    protected override void InitVM()
         {

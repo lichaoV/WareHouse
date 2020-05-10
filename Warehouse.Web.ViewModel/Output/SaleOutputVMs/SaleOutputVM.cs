@@ -12,26 +12,23 @@ namespace Warehouse.Web.ViewModel.Output.SaleOutputVMs
 {
     public partial class SaleOutputVM : BaseCRUDVM<SaleOutput>
     {
-        public List<ComboSelectListItem> AllSalesmans { get; set; }
         public List<ComboSelectListItem> AllCustomers { get; set; }
         public List<ComboSelectListItem> AllGoodsInfos { get; set; }
 
         public SaleOutputVM()
         {
-            SetInclude(x => x.Salesman);
             SetInclude(x => x.Customer);
             SetInclude(x => x.GoodsInfo);
         }
 
         protected override void InitVM()
         {
-            AllSalesmans = DC.Set<Salesman>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.SalesmanName);
             AllCustomers = DC.Set<Customer>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.CustomerName);
-            AllGoodsInfos = DC.Set<GoodsInfo>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.GoodsName + "   " + y.Specification);
+            AllGoodsInfos = DC.Set<GoodsInfo>().GetSelectListItems(LoginUserInfo?.DataPrivileges, null, y => y.GoodsName);
         }
 
         public override void DoAdd()
-        {
+        {           
             base.DoAdd();
         }
 

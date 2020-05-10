@@ -42,11 +42,10 @@ namespace Warehouse.Web.Test
             SaleOutputVM vm = rv.Model as SaleOutputVM;
             SaleOutput v = new SaleOutput();
 			
-            v.SalesmanId = AddSalesman();
             v.CustomerId = AddCustomer();
             v.GoodsInfoId = AddGoodsInfo();
-            v.SaleNumber = 16;
-            v.SalePrice = 67;
+            v.SaleNumber = 25;
+            v.SalePrice = 19;
             vm.Entity = v;
             _controller.Create(vm);
 
@@ -54,8 +53,8 @@ namespace Warehouse.Web.Test
             {
                 var data = context.Set<SaleOutput>().FirstOrDefault();
 				
-                Assert.AreEqual(data.SaleNumber, 16);
-                Assert.AreEqual(data.SalePrice, 67);
+                Assert.AreEqual(data.SaleNumber, 25);
+                Assert.AreEqual(data.SalePrice, 19);
                 Assert.AreEqual(data.CreateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.CreateTime.Value).Seconds < 10);
             }
@@ -69,11 +68,10 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
        			
-                v.SalesmanId = AddSalesman();
                 v.CustomerId = AddCustomer();
                 v.GoodsInfoId = AddGoodsInfo();
-                v.SaleNumber = 16;
-                v.SalePrice = 67;
+                v.SaleNumber = 25;
+                v.SalePrice = 19;
                 context.Set<SaleOutput>().Add(v);
                 context.SaveChanges();
             }
@@ -85,12 +83,11 @@ namespace Warehouse.Web.Test
             v = new SaleOutput();
             v.ID = vm.Entity.ID;
        		
-            v.SaleNumber = 24;
-            v.SalePrice = 72;
+            v.SaleNumber = 51;
+            v.SalePrice = 79;
             vm.Entity = v;
             vm.FC = new Dictionary<string, object>();
 			
-            vm.FC.Add("Entity.SalesmanId", "");
             vm.FC.Add("Entity.CustomerId", "");
             vm.FC.Add("Entity.GoodsInfoId", "");
             vm.FC.Add("Entity.SaleNumber", "");
@@ -101,8 +98,8 @@ namespace Warehouse.Web.Test
             {
                 var data = context.Set<SaleOutput>().FirstOrDefault();
  				
-                Assert.AreEqual(data.SaleNumber, 24);
-                Assert.AreEqual(data.SalePrice, 72);
+                Assert.AreEqual(data.SaleNumber, 51);
+                Assert.AreEqual(data.SalePrice, 79);
                 Assert.AreEqual(data.UpdateBy, "user");
                 Assert.IsTrue(DateTime.Now.Subtract(data.UpdateTime.Value).Seconds < 10);
             }
@@ -117,11 +114,10 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
         		
-                v.SalesmanId = AddSalesman();
                 v.CustomerId = AddCustomer();
                 v.GoodsInfoId = AddGoodsInfo();
-                v.SaleNumber = 16;
-                v.SalePrice = 67;
+                v.SaleNumber = 25;
+                v.SalePrice = 19;
                 context.Set<SaleOutput>().Add(v);
                 context.SaveChanges();
             }
@@ -150,11 +146,10 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 				
-                v.SalesmanId = AddSalesman();
                 v.CustomerId = AddCustomer();
                 v.GoodsInfoId = AddGoodsInfo();
-                v.SaleNumber = 16;
-                v.SalePrice = 67;
+                v.SaleNumber = 25;
+                v.SalePrice = 19;
                 context.Set<SaleOutput>().Add(v);
                 context.SaveChanges();
             }
@@ -171,16 +166,14 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 				
-                v1.SalesmanId = AddSalesman();
                 v1.CustomerId = AddCustomer();
                 v1.GoodsInfoId = AddGoodsInfo();
-                v1.SaleNumber = 16;
-                v1.SalePrice = 67;
-                v2.SalesmanId = v1.SalesmanId; 
+                v1.SaleNumber = 25;
+                v1.SalePrice = 19;
                 v2.CustomerId = v1.CustomerId; 
                 v2.GoodsInfoId = v1.GoodsInfoId; 
-                v2.SaleNumber = 24;
-                v2.SalePrice = 72;
+                v2.SaleNumber = 51;
+                v2.SalePrice = 79;
                 context.Set<SaleOutput>().Add(v1);
                 context.Set<SaleOutput>().Add(v2);
                 context.SaveChanges();
@@ -208,31 +201,32 @@ namespace Warehouse.Web.Test
             Assert.IsTrue((rv2 as FileContentResult).FileContents.Length > 0);
         }
 
-        private Guid AddSalesman()
-        {
-            Salesman v = new Salesman();
-            using (var context = new DataContext(_seed, DBTypeEnum.Memory))
-            {
-
-                v.SalesmanName = "lGI3GqjDh";
-                v.SalesmanCode = "913IWGQ5";
-                v.SalesmanPhone = "9oxUT";
-                context.Set<Salesman>().Add(v);
-                context.SaveChanges();
-            }
-            return v.ID;
-        }
-
         private Guid AddCustomer()
         {
             Customer v = new Customer();
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 
-                v.CustomerName = "WIdq";
-                v.Contract = "AfmLykqHO";
-                v.ContractPhone = "iAJaB";
+                v.CustomerName = "Gwrst";
+                v.Contract = "aalh74";
+                v.ContractPhone = "Jzg7X";
                 context.Set<Customer>().Add(v);
+                context.SaveChanges();
+            }
+            return v.ID;
+        }
+
+        private Guid AddStoreHouse()
+        {
+            StoreHouse v = new StoreHouse();
+            using (var context = new DataContext(_seed, DBTypeEnum.Memory))
+            {
+
+                v.WarehouseCode = "OUrZ1YPS";
+                v.WarehouseAddress = "pX8nakz";
+                v.ContractName = "lnxG7n9p";
+                v.ContractPhone = "37qxovgA";
+                context.Set<StoreHouse>().Add(v);
                 context.SaveChanges();
             }
             return v.ID;
@@ -244,11 +238,12 @@ namespace Warehouse.Web.Test
             using (var context = new DataContext(_seed, DBTypeEnum.Memory))
             {
 
-                v.GoodsName = "cgBwtAXGJ";
-                v.Specification = "NA14k";
-                v.SellingPrice = 37;
-                v.InputNumber = 6;
-                v.WarningValue = 10;
+                v.GoodsName = "q7By0";
+                v.Specification = "f7IAdl8";
+                v.SellingPrice = 98;
+                v.InputNumber = 72;
+                v.WarningValue = 6;
+                v.StoreHouseId = AddStoreHouse();
                 context.Set<GoodsInfo>().Add(v);
                 context.SaveChanges();
             }
